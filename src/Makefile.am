@@ -260,10 +260,16 @@ mod_status_la_LDFLAGS = -module -export-dynamic -avoid-version -no-undefined
 mod_status_la_LIBADD = $(common_libadd)
 
 lib_LTLIBRARIES += mod_fastdfs.la
-mod_fastdfs_la_CFLAGS =  -I/usr/local/include/fastdfs -I/usr/local/include/fastcommon
+mod_fastdfs_la_CFLAGS =  -I/home/tony/app/fastdfs-3.0.6/fastdfs -I/home/tony/app/fastdfs-3.0.6/fastcommon
 mod_fastdfs_la_SOURCES = mod_fastdfs.c
 mod_fastdfs_la_LDFLAGS = -module -export-dynamic -avoid-version -no-undefined -fopenmp 
-mod_fastdfs_la_LIBADD = $(common_libadd) $(MAGICKCORE_LIB) -L/usr/local/lib -lfastcommon -lfdfsclient
+mod_fastdfs_la_LIBADD = $(common_libadd) $(MAGICKCORE_LIB) -L/home/tony/app/fastdfs-3.0.6/lib -lfastcommon -lfdfsclient
+
+lib_LTLIBRARIES += mod_autothumb.la
+mod_autothumb_la_CFLAGS =  -I/home/tony/app/fastdfs-3.0.6/include/fastdfs -I/home/tony/app/fastdfs-3.0.6/include/fastcommon
+mod_autothumb_la_SOURCES = mod_autothumb.c autothumb/common.c autothumb/store_plugin/fastdfs_store.c autothumb/store_plugin/file_store.c autothumb/store.c autothumb/thumbnail.c
+mod_autothumb_la_LDFLAGS = -module -export-dynamic -avoid-version -no-undefined -fopenmp
+mod_autothumb_la_LIBADD = $(common_libadd) -L/home/tony/app/ImageMagick-6.7.6-9/lib -lMagickCore -lMagickWand -ltiff -lfreetype -ljpeg -lpng -lfontconfig -lXext -lXt -lSM -lICE -lX11 -lbz2 -lxml2 -lz -lm -lgomp -lpthread  -L/home/tony/app/fastdfs-3.0.6/lib -lfastcommon -lfdfsclient
 
 
 

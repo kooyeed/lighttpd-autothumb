@@ -1,0 +1,624 @@
+mod_autothumb_la-thumbnail.lo: autothumb/thumbnail.c \
+ autothumb/thumbnail.h autothumb/common.h /usr/include/ctype.h \
+ /usr/include/features.h /usr/include/i386-linux-gnu/bits/predefs.h \
+ /usr/include/i386-linux-gnu/sys/cdefs.h \
+ /usr/include/i386-linux-gnu/bits/wordsize.h \
+ /usr/include/i386-linux-gnu/gnu/stubs.h \
+ /usr/include/i386-linux-gnu/gnu/stubs-32.h \
+ /usr/include/i386-linux-gnu/bits/types.h \
+ /usr/include/i386-linux-gnu/bits/typesizes.h /usr/include/endian.h \
+ /usr/include/i386-linux-gnu/bits/endian.h \
+ /usr/include/i386-linux-gnu/bits/byteswap.h /usr/include/xlocale.h \
+ /usr/include/stdlib.h /usr/lib/gcc/i686-linux-gnu/4.6/include/stddef.h \
+ /usr/include/i386-linux-gnu/bits/waitflags.h \
+ /usr/include/i386-linux-gnu/bits/waitstatus.h \
+ /usr/include/i386-linux-gnu/sys/types.h /usr/include/time.h \
+ /usr/include/i386-linux-gnu/sys/select.h \
+ /usr/include/i386-linux-gnu/bits/select.h \
+ /usr/include/i386-linux-gnu/bits/sigset.h \
+ /usr/include/i386-linux-gnu/bits/time.h \
+ /usr/include/i386-linux-gnu/bits/select2.h \
+ /usr/include/i386-linux-gnu/sys/sysmacros.h \
+ /usr/include/i386-linux-gnu/bits/pthreadtypes.h /usr/include/alloca.h \
+ /usr/include/i386-linux-gnu/bits/stdlib.h /usr/include/stdio.h \
+ /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ /usr/include/i386-linux-gnu/bits/stdio_lim.h \
+ /usr/include/i386-linux-gnu/bits/sys_errlist.h \
+ /usr/include/i386-linux-gnu/bits/stdio.h \
+ /usr/include/i386-linux-gnu/bits/stdio2.h /usr/include/string.h \
+ /usr/include/i386-linux-gnu/bits/string.h \
+ /usr/include/i386-linux-gnu/bits/string2.h \
+ /usr/include/i386-linux-gnu/bits/string3.h autothumb/../base.h \
+ ../config.h autothumb/../settings.h \
+ /usr/include/i386-linux-gnu/sys/time.h \
+ /usr/include/i386-linux-gnu/sys/stat.h \
+ /usr/include/i386-linux-gnu/bits/stat.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/limits.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/i386-linux-gnu/bits/posix1_lim.h \
+ /usr/include/i386-linux-gnu/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/i386-linux-gnu/bits/posix2_lim.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include/stdint.h /usr/include/stdint.h \
+ /usr/include/i386-linux-gnu/bits/wchar.h /usr/include/inttypes.h \
+ autothumb/../buffer.h autothumb/../array.h /usr/include/pcre.h \
+ autothumb/../chunk.h autothumb/../sys-mmap.h \
+ /usr/include/i386-linux-gnu/sys/mman.h \
+ /usr/include/i386-linux-gnu/bits/mman.h autothumb/../keyvalue.h \
+ autothumb/../fdevent.h autothumb/../bitset.h \
+ /usr/include/i386-linux-gnu/sys/epoll.h /usr/include/poll.h \
+ /usr/include/i386-linux-gnu/sys/poll.h \
+ /usr/include/i386-linux-gnu/bits/poll.h autothumb/../sys-socket.h \
+ /usr/include/i386-linux-gnu/sys/socket.h \
+ /usr/include/i386-linux-gnu/sys/uio.h \
+ /usr/include/i386-linux-gnu/bits/uio.h \
+ /usr/include/i386-linux-gnu/bits/socket.h \
+ /usr/include/i386-linux-gnu/bits/sockaddr.h \
+ /usr/include/i386-linux-gnu/asm/socket.h \
+ /usr/include/asm-generic/socket.h \
+ /usr/include/i386-linux-gnu/asm/sockios.h \
+ /usr/include/asm-generic/sockios.h \
+ /usr/include/i386-linux-gnu/bits/socket2.h \
+ /usr/include/i386-linux-gnu/sys/ioctl.h \
+ /usr/include/i386-linux-gnu/bits/ioctls.h \
+ /usr/include/i386-linux-gnu/asm/ioctls.h \
+ /usr/include/asm-generic/ioctls.h /usr/include/linux/ioctl.h \
+ /usr/include/i386-linux-gnu/asm/ioctl.h /usr/include/asm-generic/ioctl.h \
+ /usr/include/i386-linux-gnu/bits/ioctl-types.h \
+ /usr/include/i386-linux-gnu/sys/ttydefaults.h /usr/include/netinet/in.h \
+ /usr/include/i386-linux-gnu/bits/in.h /usr/include/netinet/tcp.h \
+ /usr/include/i386-linux-gnu/sys/un.h /usr/include/arpa/inet.h \
+ /usr/include/netdb.h /usr/include/rpc/netdb.h \
+ /usr/include/i386-linux-gnu/bits/siginfo.h \
+ /usr/include/i386-linux-gnu/bits/netdb.h autothumb/../splaytree.h \
+ autothumb/../etag.h /usr/include/unistd.h \
+ /usr/include/i386-linux-gnu/bits/posix_opt.h \
+ /usr/include/i386-linux-gnu/bits/environments.h \
+ /usr/include/i386-linux-gnu/bits/confname.h /usr/include/getopt.h \
+ /usr/include/i386-linux-gnu/bits/unistd.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/MagickWand.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/magick-config.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/method-attribute.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/MagickCore.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/method-attribute.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/magick-type.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/accelerate.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/morphology.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/geometry.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/animate.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/annotate.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/draw.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/image.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/color.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/pixel.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/colorspace.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/constitute.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/exception.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/semaphore.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/blob.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/stream.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/cache-view.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/composite.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/compress.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/effect.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/layer.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/locale_.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/hashmap.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/monitor.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/profile.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/string_.h \
+ /usr/include/i386-linux-gnu/bits/timex.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/quantum.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/resample.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/resize.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/timer.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/type.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/artifact.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/attribute.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/cache.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/cipher.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/client.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/coder.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/colormap.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/compare.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/configure.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/decorate.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/delegate.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/deprecate.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/quantize.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/registry.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/display.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/distort.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/enhance.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/feature.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/fourier.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/fx.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/gem.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/random_.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/histogram.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/identify.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/image-view.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/list.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/log.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/magic.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/magick.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/matrix.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/memory_.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/module.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/version.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/mime.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/montage.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/option.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/paint.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/policy.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/prepress.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/property.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/resource_.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/segment.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/shear.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/signature.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/splay-tree.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/statistic.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/token.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/transform.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/threshold.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/utility.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/xml-tree.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/xwindow.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/animate.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/compare.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/composite.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/conjure.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/convert.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/deprecate.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/drawing-wand.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/pixel-wand.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/magick-wand.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/pixel-iterator.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/display.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/identify.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/import.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/magick-property.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/magick-image.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/mogrify.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/montage.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/stream.h \
+ /home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/wand-view.h
+
+autothumb/thumbnail.h:
+
+autothumb/common.h:
+
+/usr/include/ctype.h:
+
+/usr/include/features.h:
+
+/usr/include/i386-linux-gnu/bits/predefs.h:
+
+/usr/include/i386-linux-gnu/sys/cdefs.h:
+
+/usr/include/i386-linux-gnu/bits/wordsize.h:
+
+/usr/include/i386-linux-gnu/gnu/stubs.h:
+
+/usr/include/i386-linux-gnu/gnu/stubs-32.h:
+
+/usr/include/i386-linux-gnu/bits/types.h:
+
+/usr/include/i386-linux-gnu/bits/typesizes.h:
+
+/usr/include/endian.h:
+
+/usr/include/i386-linux-gnu/bits/endian.h:
+
+/usr/include/i386-linux-gnu/bits/byteswap.h:
+
+/usr/include/xlocale.h:
+
+/usr/include/stdlib.h:
+
+/usr/lib/gcc/i686-linux-gnu/4.6/include/stddef.h:
+
+/usr/include/i386-linux-gnu/bits/waitflags.h:
+
+/usr/include/i386-linux-gnu/bits/waitstatus.h:
+
+/usr/include/i386-linux-gnu/sys/types.h:
+
+/usr/include/time.h:
+
+/usr/include/i386-linux-gnu/sys/select.h:
+
+/usr/include/i386-linux-gnu/bits/select.h:
+
+/usr/include/i386-linux-gnu/bits/sigset.h:
+
+/usr/include/i386-linux-gnu/bits/time.h:
+
+/usr/include/i386-linux-gnu/bits/select2.h:
+
+/usr/include/i386-linux-gnu/sys/sysmacros.h:
+
+/usr/include/i386-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/alloca.h:
+
+/usr/include/i386-linux-gnu/bits/stdlib.h:
+
+/usr/include/stdio.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/wchar.h:
+
+/usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h:
+
+/usr/include/i386-linux-gnu/bits/stdio_lim.h:
+
+/usr/include/i386-linux-gnu/bits/sys_errlist.h:
+
+/usr/include/i386-linux-gnu/bits/stdio.h:
+
+/usr/include/i386-linux-gnu/bits/stdio2.h:
+
+/usr/include/string.h:
+
+/usr/include/i386-linux-gnu/bits/string.h:
+
+/usr/include/i386-linux-gnu/bits/string2.h:
+
+/usr/include/i386-linux-gnu/bits/string3.h:
+
+autothumb/../base.h:
+
+../config.h:
+
+autothumb/../settings.h:
+
+/usr/include/i386-linux-gnu/sys/time.h:
+
+/usr/include/i386-linux-gnu/sys/stat.h:
+
+/usr/include/i386-linux-gnu/bits/stat.h:
+
+/usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/limits.h:
+
+/usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/i386-linux-gnu/bits/posix1_lim.h:
+
+/usr/include/i386-linux-gnu/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/i386-linux-gnu/bits/posix2_lim.h:
+
+/usr/lib/gcc/i686-linux-gnu/4.6/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/i386-linux-gnu/bits/wchar.h:
+
+/usr/include/inttypes.h:
+
+autothumb/../buffer.h:
+
+autothumb/../array.h:
+
+/usr/include/pcre.h:
+
+autothumb/../chunk.h:
+
+autothumb/../sys-mmap.h:
+
+/usr/include/i386-linux-gnu/sys/mman.h:
+
+/usr/include/i386-linux-gnu/bits/mman.h:
+
+autothumb/../keyvalue.h:
+
+autothumb/../fdevent.h:
+
+autothumb/../bitset.h:
+
+/usr/include/i386-linux-gnu/sys/epoll.h:
+
+/usr/include/poll.h:
+
+/usr/include/i386-linux-gnu/sys/poll.h:
+
+/usr/include/i386-linux-gnu/bits/poll.h:
+
+autothumb/../sys-socket.h:
+
+/usr/include/i386-linux-gnu/sys/socket.h:
+
+/usr/include/i386-linux-gnu/sys/uio.h:
+
+/usr/include/i386-linux-gnu/bits/uio.h:
+
+/usr/include/i386-linux-gnu/bits/socket.h:
+
+/usr/include/i386-linux-gnu/bits/sockaddr.h:
+
+/usr/include/i386-linux-gnu/asm/socket.h:
+
+/usr/include/asm-generic/socket.h:
+
+/usr/include/i386-linux-gnu/asm/sockios.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/i386-linux-gnu/bits/socket2.h:
+
+/usr/include/i386-linux-gnu/sys/ioctl.h:
+
+/usr/include/i386-linux-gnu/bits/ioctls.h:
+
+/usr/include/i386-linux-gnu/asm/ioctls.h:
+
+/usr/include/asm-generic/ioctls.h:
+
+/usr/include/linux/ioctl.h:
+
+/usr/include/i386-linux-gnu/asm/ioctl.h:
+
+/usr/include/asm-generic/ioctl.h:
+
+/usr/include/i386-linux-gnu/bits/ioctl-types.h:
+
+/usr/include/i386-linux-gnu/sys/ttydefaults.h:
+
+/usr/include/netinet/in.h:
+
+/usr/include/i386-linux-gnu/bits/in.h:
+
+/usr/include/netinet/tcp.h:
+
+/usr/include/i386-linux-gnu/sys/un.h:
+
+/usr/include/arpa/inet.h:
+
+/usr/include/netdb.h:
+
+/usr/include/rpc/netdb.h:
+
+/usr/include/i386-linux-gnu/bits/siginfo.h:
+
+/usr/include/i386-linux-gnu/bits/netdb.h:
+
+autothumb/../splaytree.h:
+
+autothumb/../etag.h:
+
+/usr/include/unistd.h:
+
+/usr/include/i386-linux-gnu/bits/posix_opt.h:
+
+/usr/include/i386-linux-gnu/bits/environments.h:
+
+/usr/include/i386-linux-gnu/bits/confname.h:
+
+/usr/include/getopt.h:
+
+/usr/include/i386-linux-gnu/bits/unistd.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/MagickWand.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/magick-config.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/method-attribute.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/MagickCore.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/method-attribute.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/magick-type.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/accelerate.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/morphology.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/geometry.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/animate.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/annotate.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/draw.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/image.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/color.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/pixel.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/colorspace.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/constitute.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/exception.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/semaphore.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/blob.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/stream.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/cache-view.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/composite.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/compress.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/effect.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/layer.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/locale_.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/hashmap.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/monitor.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/profile.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/string_.h:
+
+/usr/include/i386-linux-gnu/bits/timex.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/quantum.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/resample.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/resize.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/timer.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/type.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/artifact.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/attribute.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/cache.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/cipher.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/client.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/coder.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/colormap.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/compare.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/configure.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/decorate.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/delegate.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/deprecate.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/quantize.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/registry.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/display.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/distort.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/enhance.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/feature.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/fourier.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/fx.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/gem.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/random_.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/histogram.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/identify.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/image-view.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/list.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/log.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/magic.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/magick.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/matrix.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/memory_.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/module.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/version.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/mime.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/montage.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/option.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/paint.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/policy.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/prepress.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/property.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/resource_.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/segment.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/shear.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/signature.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/splay-tree.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/statistic.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/token.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/transform.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/threshold.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/utility.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/xml-tree.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/magick/xwindow.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/animate.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/compare.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/composite.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/conjure.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/convert.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/deprecate.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/drawing-wand.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/pixel-wand.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/magick-wand.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/pixel-iterator.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/display.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/identify.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/import.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/magick-property.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/magick-image.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/mogrify.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/montage.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/stream.h:
+
+/home/tony/app/ImageMagick-6.7.6-9/include/ImageMagick/wand/wand-view.h:

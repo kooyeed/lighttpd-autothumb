@@ -1,0 +1,39 @@
+使用说明
+====
+
+== 项目简介 ==
+本项目fork自 https://github.com/wangmh/lighttpd-fastdfs ，是一个lighttpd插件。
+
+== 功能介绍 ==
+. 根据请求的URI地址自动生成缩略图。
+. 图片生成规则由用户自定义配置产生。
+. 原图的存储介质支持：FastDFS，普通磁盘文件，MongoDB GridFS等多种途径，可以随意扩展。
+. 支持对图片的缩放，裁剪，压缩和翻转操作。
+
+[TIP]
+其实本项目起初是专门为Lighttpd + ImageMagic + FastDFS这样一个组合来设计的，因此以后的说明都将以此为范例。
+
+== 前提条件 ==
+. 安装 http://code.google.com/p/fastdfs/[FastDFS] 和 http://www.imagemagick.org/script/index.php[ImageMagic] 。
+. 安装编译需要的基本库和工具，比如 GCC 。
+. 部署环境为Linux，未在其他平台进行过测试。
+
+== 编译安装 ==
+. $: ./configure prefix=/your app directory/
+. $: ./make
+. $: ./make install
+. $: cd /your app directory/
+. $: vim conf/lighttpd.conf，并增加相应的插件配置，比如：
+
+[listing]
+.....................................................................
+#autothumb.store-type = "fastdfs"
+#autothumb.store-conf = "/your fastdfs isntalled/etc/client.conf"
+.....................................................................
+
+== TODO ==
+. 完善条件编译，支持不同的存储介质。
+. 目前处理图片采用的是 http://www.imagemagick.org/script/magick-wand.php[ImageMagicWand] 库，准备用 http://code.google.com/p/graphmagic/[GraphMagic] 替换提升性能。
+. 大量的性能测试和内存测试。
+. 修复png格式在IE6下面不能正常显示问题。
+. 图片水印支持。

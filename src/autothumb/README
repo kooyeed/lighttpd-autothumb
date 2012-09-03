@@ -1,0 +1,392 @@
+|_____mod_autothumb.c: module
+|_____autothumb/autothumb.c
+|_____autothumb/autothumb.c
+
+分成下面几个模块:
+1.配置,比如文件格式，大小等;
+2.图片处理,调用magickWand或者magickCore的方法处理;
+3.资源存储,可以时直接硬盘存储，也可以时fastdfs,或者gridfs,提供接口即可;
+
+TODO:
+1.在fastdfs未启动时报错不友好。
+2.repeat image
+
+imagemagick内部格式：
+#undef YNegative
+  YNegative = 0x0040,
+  ChiNegative = 0x0080,
+  PercentValue = 0x1000,   /* '%'  percentage of something */
+  AspectValue = 0x2000,    /* '!'  resize no-aspect - special use flag */
+  NormalizeValue = 0x2000, /* '!'  ScaleKernelValue() in morphology.c */
+  LessValue = 0x4000,      /* '<'  resize smaller - special use flag */
+  GreaterValue = 0x8000,   /* '>'  resize larger - spacial use flag */
+  MinimumValue = 0x10000,  /* '^'  special handling needed */
+  CorrelateNormalizeValue = 0x10000, /* '^' see ScaleKernelValue() */
+  AreaValue = 0x20000,     /* '@'  resize to area - special use flag */
+  DecimalValue = 0x40000,  /* '.'  floating point numbers found */
+
+/** our format protocol，@_@ */
+//char need_replace[REPLACE_CHAR_COUNT] = { '(', ')', '_', '-' };
+char need_replace[REPLACE_CHAR_COUNT] = { 'l', 'g', 'b', 'm', 'a' };
+
+/** magick format protocol,you can view the magick own method: GetGeometry */
+char dest_replace[REPLACE_CHAR_COUNT] = { '<', '>', '^', '%', '!' };
+
+/**
+ *  根据文件名，获取转换字符串,文件格式必须符合fastdfs标准,并且在文件名后面加
+ *  上我们自定义的协议格式 group1/xx/xx/filename=format_str.jpg,format_str格式
+ *  字符串的格式为: 宽度x高度[lgbma].[gif,jpg,jpeg,png],下面举例说明
+ *  01. 100x100.jpg,   锁定比例按照最小值缩放,表示高宽都不会大于给定尺寸;
+    02. 100x100b.jpg,  锁定比例按照最大值缩放,与1相反;
+    03. 100x100a.jpg,  取消锁定比例,将会输出给定尺寸的图片;
+    04. 600×200g.jpg,  锁定比例,按照固定尺寸取小值缩小(只允许缩小),缩小操作;
+    05. 600×200l.jpg,  锁定比例,按照固定尺寸取小值放大(只允许放大),放大操作;
+    06. 600×200gb.jpg, 锁定比例,按照固定尺寸取大值缩小(只允许缩小),缩小操作;
+    07. 600×200lb.jpg, 锁定比例,按照固定尺寸取大值放大(只允许放大),放大操作;
+    08. 600×200la.jpg, 取消锁定比例,按照固定尺寸缩小;
+    09. 600×200ga.jpg, 取消锁定比例,按照固定尺寸放大;
+    -------------------下面的协议格式是imagemagick内部不支持的-----------------
+    10. c200x100+300+100.jpg, 在图片上截取一个矩形;
+    11. C200x100+300+100.jpg, 最大化的截取一个图片的矩形区域;
+    12. xx.jpg?rotate=180, 图片顺时针旋转180度;
+    13. xx.jpg?quality=10, 图片质量设置为10;合理控制，有助于手机客户端;
+    14. 100x100gb_r120.jpg, 图片顺时针旋转120度
+    15. 100x100gb_q70.jpg, 图片质量70
+    16. 100x100gb_r120_q70.jpg, 图片质量70
+
+    以上13种格式可以组合使用,自由发挥;
+
+    format_key = ["a","b","c","d"]
+    format_val = ["100x100","100x100^", "100x100!", "100x50%", "100x100<", "100x100>", "100x100+10+20"]
+    
+    1. 图片质量在10~90的整数，用1~9表示，其他无效;
+    2. 前缀不能包含下划线，字母Q和R，不区分大小写;
+    3. 旋转度数在10~360之间，用01~36[必须两位对齐]表示，其他无效;
+    4.后缀的唯一标示符长度在1~4之间，不能超过限制; _4_q1_r2
+
+    
+    format: [http://www.xx.com/id+尺寸格式_图片质量_旋转度数.格式]
+    
+    group1/M00/0D/F3/3MIv8U0JrcoAAAAAAABNcGtWhC0409=320X100>!.jpg
+    ["a"]
+    ["320X100>!"]
+    ===> group1/M00/0D/F3/3MIv8U0JrcoAAAAAAABNcGtWhC0409=a.jpg
+    
+
+    
+    100x100:  根据比例缩放，不大于给定尺寸；
+    100x100^: 根据比例缩放，不小于给定尺寸；
+    100x100!: 不根据比例缩放，等于给定尺寸；
+    100x100<: 根据比例缩放，当文件小于给定尺寸时进行缩放，不大于给定尺寸；
+    100x100>: 根据比例缩放，当文件大于给定尺寸时进行缩放，不大于给定尺寸；
+    30%x50%:  根据比例缩放，高宽比例按照给定百分比进行缩放，不大于给定尺寸；
+    
+    <width>x<height>{+-}<xoffset>{+-}<yoffset>{%}{!}{<}{>}{^}
+    
+    
+    
+
+
+
+
+
+	//在此处打印所有的参数信息
+	//printf("con->physical.rel_path:%s", con->physical.rel_path);
+	/*
+	print conn info
+	0
+	0
+	0
+	379
+	/group1/M00/01/2E/wKgUy07qsYvjdu7jAAEUsVje4YA162.jpg
+	/group1/M00/01/2E/wKgUy07qsYvjdu7jAAEUsVje4YA162.jpg
+	>>
+	/opt/server/lighttpd-test/www/
+	/opt/server/lighttpd-test/www/
+	/opt/server/lighttpd-test/www/group1/M00/01/2E/wKgUy07qsYvjdu7jAAEUsVje4YA162.jpg
+	/group1/M00/01/2E/wKgUy07qsYvjdu7jAAEUsVje4YA162.jpg
+	*/
+    /*
+	log_error_write(srv,
+                    __FILE__,
+                    __LINE__,
+                    "s:d:d:d:d:s:s:s>>s:s:s:s:s",
+                    "print conn info",
+                    (int)(con->mode==DIRECT),
+                    (int)(con->mode==EXTERNAL),
+                    con->http_status,
+                    con->header_len,
+                    con->uri.path->ptr,
+                    con->uri.query->ptr,
+                    con->uri.path_raw->ptr,
+                    con->physical.basedir->ptr,
+                    con->physical.doc_root->ptr,
+                    con->physical.etag->ptr,
+                    con->physical.path->ptr,
+                    con->physical.rel_path->ptr
+
+
+                    );
+    log_error_write(srv, __FILE__, __LINE__, "s", "physical_handler end.");
+    */
+
+
+
+
+
+
+    //fastdfs效验
+    //if ( strstr(uri, "group") == NULL) {
+    //    return HANDLER_GO_ON;
+    //}
+    //FDFS_STORAGE_STORE_PATH_PREFIX_CHAR
+
+    //文件名合法性效验
+
+    //fdfs_check_data_filename
+
+    //fdfs_get_file_info_ex1
+
+    //FDFS_MOD_REPONSE_MODE_REDIRECT
+
+
+
+
+
+//log_error_write(srv, __FILE__, __LINE__, "s:s", "last_filename:", last_filename);
+    if(last_filename[0] != '\0') {
+        res = fdfs_get_file_info1(last_filename, &file_info);
+        log_error_write(srv, __FILE__, __LINE__, "s:s", "get file info:", STRERROR(res) );
+        if(res == 0) {
+            ds = (data_string *) array_get_element(con->request.headers, "If-Modified-Since");
+            if (NULL == ds ) {
+                hctx->mtime = strftime_cache_get(srv, file_info.create_timestamp);
+                response_header_append(srv, con, CONST_STR_LEN("Last-Modified"), CONST_BUF_LEN(hctx->mtime) ) ;
+
+
+                /** step:设置Expires,该处来自mod_expire,也可以启用mod_expire */
+                hctx->timestamp = file_info.create_timestamp;
+                hctx->timestamp += 864000; /** 缓存在客户端10天 */
+                int lens = strftime(hctx->expire->ptr, 32 , "%a, %d %b %Y %H:%M:%S GMT", gmtime ( &(hctx->timestamp) ));
+                hctx->expire->used = lens + 1;
+
+                // HTTP/1.0
+                response_header_append(srv, con, CONST_STR_LEN("Expires"), CONST_BUF_LEN(hctx->expire));
+
+                /* HTTP/1.1 */
+                buffer_copy_string_len(hctx->expire, CONST_STR_LEN("max-age="));
+                buffer_append_long(hctx->expire, hctx->timestamp - srv->cur_ts);
+
+                /* as expires >= srv->cur_ts the difference is >= 0 */
+                response_header_append(srv, con, CONST_STR_LEN("Cache-Control"), CONST_BUF_LEN(hctx->expire) );
+            }
+            else {
+                hctx->mtime = ds->value;
+            }
+
+            free(file_buff);
+        }
+
+        else if ( ENOENT == res ) {
+            con->http_status = 404;
+        }
+        else if( 0 != res ) {
+            con->http_status = 500;
+        }
+    }
+
+
+
+
+
+
+
+#test parse_uri
+gcc autothumb.c /home/tony/app/fastdfs-3.0.6/lib/libfastcommon.so store_plugin/fastdfs_store.c store_plugin/file_store.c /home/tony/app/fastdfs-3.0.6/lib/libfdfsclient.so store.c thumbnail.c /usr/lib/libMagickCore.so /usr/lib/libMagickWand.so common.c -o autothumb
+
+
+
+
+
+
+
+
+
+#ifdef VERION_01
+int parse_uri(store_plugin_t *sp, char *uri, char *query, file_info_t *fi) {
+    //key_value_pair_t params[HTTPD_MAX_PARAMS];
+    //int param_count;
+    int uri_len;
+    char *p1, *p2, *p;
+    int tmp;
+
+    char arr1[16],arr2[16];
+
+    uri_len = strlen(uri);
+    if (*uri == '/') {
+        uri++;
+    }
+
+    /** full filename */
+    p1 = strrchr(uri, '.');
+    if(p1 != NULL) {
+        strncpy(fi->full_filename, uri, p1-uri);
+    }
+    else {
+        return -1;
+    }
+
+    /** original filename, original format string*/
+    p1 = strchr(fi->full_filename, '+');
+    if(p1 == NULL) {//
+        *(fi->outer_format) = '\0';
+        *(fi->suffix) = '\0';
+        strcpy(fi->orig_filename, fi->full_filename);
+    }
+    else {
+        strncpy(fi->orig_filename, fi->full_filename, p1-fi->full_filename);
+        p1++;
+        strcpy(fi->outer_format, p1);
+        strcpy(fi->inner_format, fi->outer_format);
+    }
+
+    /** transfer to inner format string */
+    replace_string(fi->inner_format);
+
+
+    /** file extension   */
+    p1 = strrchr(uri, '.');
+    p1++;
+
+    p2 = strrchr(p1, '?');
+    if(p2 == NULL) {
+        strcpy(fi->file_extension, p1);
+    }
+    else {
+        strncpy(fi->file_extension, p1, p2-p1);
+    }
+
+    /*
+    param_count = parse_uri_params(uri, params, HTTPD_MAX_PARAMS);
+    //rotate degree 
+    p1 = get_uri_param("rotate", params, param_count);
+    if(p1 != NULL) {
+        tmp = atoi(p1);
+        if (tmp > 0 && tmp < 360) {
+            fi->rotate_degree = tmp;
+        }
+    }
+
+    //picture quality
+    p1 = get_uri_param("quality", params, param_count);    
+    if(p1 != NULL) {
+        tmp= atoi(p1);
+        if (tmp > 0 && tmp < 100) {
+            fi->quality  = tmp;
+        }
+    }
+    */
+
+    /** the file extension for the unique identifier of the file */
+    if( *(fi->outer_format) != '\0' ) {
+        *arr1 = '\0';
+        *arr2 = '\0';
+        if(fi->rotate_degree > 0) {
+            sprintf(arr1, "_r%d", fi->rotate_degree);
+        }
+
+        if(fi->quality > 0) {
+            sprintf(arr2, "_q%d", fi->quality);
+        }
+
+        sprintf(fi->suffix, "_%s%s%s", fi->outer_format, arr1, arr2);
+
+        /** file size string */
+        p1 = fi->outer_format;
+        int v = 0;
+        tmp = 0;
+        while (*p1 != '\0') {
+            v = (int)*p1;
+            if( (v < 48 || v > 57) && *p1 != 'x' && tmp > 0) {
+               strncpy(fi->file_size, fi->outer_format, p1 - fi->outer_format );
+               break;
+            }
+            tmp++;
+            p1++;
+        }
+        if(*p1 == '\0') {
+            strcpy(fi->file_size, fi->outer_format);
+        }
+    }
+
+    /** TODO:can actually use a solution, but fastdfs only 16 length */
+    if( *(fi->suffix) == '\0' ) {
+        sprintf(fi->full_filename, "%s.%s",fi->orig_filename, fi->file_extension);
+    }
+    else {
+        sprintf(fi->full_filename, "%s%s.%s",fi->orig_filename, fi->suffix, fi->file_extension);
+    }
+    sprintf(fi->orig_filename, "%s.%s",fi->orig_filename, fi->file_extension);
+
+    return 0;
+}
+#endif
+
+
+
+
+
+    return 0;
+    /*
+    char *file_data1 = NULL;
+    int64_t file_size1;
+    char *file_data2 = NULL;
+    int64_t file_size2;
+
+    result_t res;
+
+    do {
+        //fetch current file
+        res = sp->fetch_file(fi->full_filename, &file_data1, &file_size1);
+        if(res == RESULT_SUCCESS) {//fetch success
+            break;
+        }
+
+        //download old file
+        res = sp->fetch_file(fi->orig_filename, &file_data2, &file_size2);
+        if(res != RESULT_SUCCESS) {//fetch success
+            //404
+            break;
+        }
+
+
+        //generate new file
+        file_data1 = get_transition_image_blob(file_data2, file_size2, &file_size1, fi);
+        if(file_data1 == NULL) {
+            //500
+            break;
+        }
+
+        //free resource 
+        free(file_data2);
+
+        //save slave file
+        res = sp->save_slave_file(file_data1, file_size1, fi->orig_filename, fi->suffix, fi->file_extension);
+        if( res != RESULT_SUCCESS) {
+            //LOG就可以了
+            res = RESULT_SUCCESS;
+            break;
+        }
+
+    } while(0);
+
+    if(res == RESULT_SUCCESS) {
+        //output
+        printf("LINE:%d, %s.\n", __LINE__, __FILE__);
+    }
+
+    //free resource
+    file_info_free(fi);
+    STORE_FREE(fastdfs, sp);
+    free(file_data1);
+    */
