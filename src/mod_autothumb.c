@@ -300,9 +300,10 @@ void _subrequest_output(server *srv, connection *con, char *file_buff, int64_t f
         
         //step:output content
         buffer *content = buffer_init();
+        buffer_prepare_append(content, file_size + 1);
         buffer_copy_memory(content, file_buff, file_size);
         
-        buffer_append_string(content, "\xD9");
+        //buffer_append_string(content, "\xD9");
         chunkqueue_append_buffer(con->write_queue, content);
         
         buffer_free(content);
